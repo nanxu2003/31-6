@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新沂亚森网络科技有限公司 - 重塑数字商业价值</title>
+    <meta name="description" content="新沂亚森网络科技有限公司，领先的数字化解决方案提供商，专注于云计算、大数据分析与企业级AI应用开发。">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', '"Noto Sans SC"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb', // 主色：皇家蓝
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                        accent: {
+                            light: '#a78bfa',
+                            DEFAULT: '#7c3aed', // 辅色：紫罗兰
+                            dark: '#5b21b6',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'glow': '0 0 20px rgba(37, 99, 235, 0.3)',
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 基础样式微调 */
+        body {
+            background-color: #f8fafc;
+        }
+        
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* 滚动出现动画类 */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 渐变文字 */
+        .text-gradient-blue {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="text-slate-600 antialiased selection:bg-brand-600 selection:text-white">
+
+    <!-- 1. 顶部通告栏 (Alert Bar) -->
+    <div class="bg-brand-900 text-white text-xs py-2 overflow-hidden relative">
+        <div class="container mx-auto px-6 flex justify-between items-center relative z-10">
+            <div class="flex items-center gap-2">
+                <span class="bg-white/20 px-2 py-0.5 rounded text-[10px] font-bold tracking-wider">NEW</span>
+                <span>新沂亚森网络科技有限公司 荣获 2024 年度最具创新力科技企业奖</span>
+            </div>
+            <div class="hidden md:flex gap-4 opacity-80">
+                <a href="#" class="hover:text-white hover:opacity-100 transition">投资者关系</a>
+                <a href="#" class="hover:text-white hover:opacity-100 transition">媒体中心</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. 导航栏 (Navbar) -->
+    <header class="fixed top-0 w-full z-50 transition-all duration-300 mt-8" id="navbar">
+        <div class="container mx-auto px-6">
+            <div class="glass-nav rounded-2xl px-6 py-4 flex justify-between items-center shadow-sm">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 bg-brand-600 text-white rounded-xl flex items-center justify-center shadow-lg shadow-brand-500/30 group-hover:rotate-12 transition-transform duration-300">
+                        <i data-lucide="zap" class="w-6 h-6 fill-current"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-slate-900 tracking-tight block leading-none">新沂亚森 XY YASEN</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-slate-600">
+                    <div class="relative group py-2">
+                        <button class="flex items-center gap-1 hover:text-brand-600 transition-colors">产品服务 <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
+                        <!-- Dropdown -->
+                        <div class="absolute top-full -left-4 w-64 bg-white rounded-xl shadow-xl border border-slate-100 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform translate-y-2 group-hover:translate-y-0">
+                            <a href="#" class="block p-3 hover:bg-slate-50 rounded-lg group/item">
+                                <div class="text-slate-900 font-bold mb-1 group-hover/item:text-brand-600">云端架构</div>
+                                <div class="text-xs text-slate-400">AWS / Azure 混合云部署</div>
+                            </a>
+                            <a href="#" class="block p-3 hover:bg-slate-50 rounded-lg group/item">
+                                <div class="text-slate-900 font-bold mb-1 group-hover/item:text-brand-600">大数据中台</div>
+                                <div class="text-xs text-slate-400">数据清洗、治理与可视化</div>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="#solutions" class="hover:text-brand-600 transition-colors">解决方案</a>
+                    <a href="#cases" class="hover:text-brand-600 transition-colors">客户案例</a>
+                    <a href="#pricing" class="hover:text-brand-600 transition-colors">价格方案</a>
+                    <a href="#about" class="hover:text-brand-600 transition-colors">关于我们</a>
+                </nav>
+
+                <!-- CTA -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <a href="#" class="text-sm font-semibold text-slate-600 hover:text-brand-600">登录</a>
+                    <a href="#contact" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-sm font-bold rounded-full shadow-lg shadow-brand-500/30 transition-all hover:-translate-y-0.5">
+                        免费试用
+                    </a>
+                </div>
+
+                <!-- Mobile Button -->
+                <button class="lg:hidden text-slate-700" onclick="toggleMenu()">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-white transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col pt-24 px-8">
+        <button class="absolute top-8 right-8 text-slate-500" onclick="toggleMenu()">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <div class="flex flex-col gap-6 text-xl font-bold text-slate-800">
+            <a href="#" onclick="toggleMenu()">首页</a>
+            <a href="#solutions" onclick="toggleMenu()">解决方案</a>
+            <a href="#pricing" onclick="toggleMenu()">价格</a>
+            <a href="#contact" onclick="toggleMenu()" class="text-brand-600">联系我们</a>
+        </div>
+    </div>
+
+    <!-- 3. Hero 区域 (Modern Gradient) -->
+    <section class="relative pt-48 pb-32 overflow-hidden">
+        <!-- 背景装饰 -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 bg-white">
+            <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+            <div class="absolute top-0 right-[20%] w-[600px] h-[600px] bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div class="absolute -bottom-32 left-[10%] w-[600px] h-[600px] bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] opacity-[0.03]"></div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center lg:text-left grid lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal-up active">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-100 text-brand-600 text-xs font-bold mb-8">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                    </span>
+                    构建下一代企业数字生态
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6">
+                    让数据驱动 <br>
+                    <span class="text-gradient-blue">商业无限可能</span>
+                </h1>
+                <p class="text-lg text-slate-500 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                    新沂亚森网络科技有限公司 融合尖端 AI 算法与行业Know-how，为您提供从战略规划到技术落地的全栈式数字化转型服务。
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#contact" class="px-8 py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center gap-2">
+                        立即咨询
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#video" class="px-8 py-4 bg-white text-slate-700 font-bold rounded-xl border border-slate-200 hover:border-brand-200 hover:text-brand-600 transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="play-circle" class="w-5 h-5"></i>
+                        观看演示
+                    </a>
+                </div>
+                
+                <div class="mt-12 flex items-center justify-center lg:justify-start gap-6 text-sm text-slate-400 font-medium">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-green-500"></i> ISO 27001 认证
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-green-500"></i> 99.99% 可用性
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧视觉图：抽象的Dashboard -->
+            <div class="relative lg:h-[600px] flex items-center justify-center reveal-up delay-100">
+                <div class="relative w-full max-w-lg aspect-square">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-500 to-accent-500 rounded-full blur-[80px] opacity-20"></div>
+                    <!-- 主卡片 -->
+                    <div class="absolute inset-x-0 top-[10%] bg-white rounded-2xl shadow-2xl border border-slate-100 p-4 z-20 transform rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
+                        <div class="flex items-center gap-2 border-b border-slate-50 pb-3 mb-3">
+                            <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="h-24 bg-brand-50 rounded-lg w-full flex items-end p-2 gap-1">
+                                <div class="w-1/5 bg-brand-200 h-[40%] rounded-sm"></div>
+                                <div class="w-1/5 bg-brand-300 h-[60%] rounded-sm"></div>
+                                <div class="w-1/5 bg-brand-500 h-[80%] rounded-sm"></div>
+                                <div class="w-1/5 bg-brand-400 h-[50%] rounded-sm"></div>
+                                <div class="w-1/5 bg-brand-600 h-[90%] rounded-sm"></div>
+                            </div>
+                            <div class="flex gap-2">
+                                <div class="h-2 bg-slate-100 rounded w-1/2"></div>
+                                <div class="h-2 bg-slate-100 rounded w-1/4"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 浮动卡片 1 -->
+                    <div class="absolute -right-8 top-[40%] bg-white rounded-xl shadow-xl p-4 z-30 animate-bounce" style="animation-duration: 3s;">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <i data-lucide="trending-up" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">效率提升</div>
+                                <div class="text-lg font-bold text-slate-800">+235%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 浮动卡片 2 -->
+                    <div class="absolute -left-4 bottom-[20%] bg-white rounded-xl shadow-xl p-4 z-30 animate-pulse">
+                         <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                                <i data-lucide="cpu" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">AI 算力</div>
+                                <div class="text-lg font-bold text-slate-800">Optimized</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 合作伙伴 (Logo Wall) -->
+    <section class="py-10 border-y border-slate-100 bg-white">
+        <div class="container mx-auto px-6">
+            <p class="text-center text-sm font-semibold text-slate-400 uppercase tracking-widest mb-8">被全球 500+ 顶尖企业信赖</p>
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 grayscale opacity-40">
+                <!-- 占位Logo -->
+                <div class="font-bold text-2xl flex items-center gap-1"><i data-lucide="hexagon"></i> ACME Corp</div>
+                <div class="font-bold text-2xl flex items-center gap-1"><i data-lucide="triangle"></i> Vertex</div>
+                <div class="font-bold text-2xl flex items-center gap-1"><i data-lucide="circle"></i> Orbit</div>
+                <div class="font-bold text-2xl flex items-center gap-1"><i data-lucide="square"></i> Blocks</div>
+                <div class="font-bold text-2xl flex items-center gap-1"><i data-lucide="diamond"></i> Diamond</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 核心价值 (Value Prop) - 网格布局 -->
+    <section class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">为什么选择 <span class="text-brand-600">新沂亚森网络科技有限公司</span></h2>
+                <p class="text-slate-500 text-lg">我们不只是提供代码，更提供具有前瞻性的商业增长引擎。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-xl transition-shadow duration-300 group reveal-up">
+                    <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <i data-lucide="layers" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">模块化架构</h3>
+                    <p class="text-slate-500 leading-relaxed">像搭积木一样构建您的企业应用。高度解耦的系统设计，让二次开发与功能扩展不再是难题。</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-xl transition-shadow duration-300 group reveal-up delay-100">
+                    <div class="w-12 h-12 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600 mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">金融级安全</h3>
+                    <p class="text-slate-500 leading-relaxed">全链路数据加密，多重身份验证机制，通过 ISO27001 与等保三级认证，守护核心资产。</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-xl transition-shadow duration-300 group reveal-up delay-200">
+                    <div class="w-12 h-12 bg-pink-50 rounded-lg flex items-center justify-center text-pink-600 mb-6 group-hover:bg-pink-600 group-hover:text-white transition-colors">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">极致性能</h3>
+                    <p class="text-slate-500 leading-relaxed">基于 Rust 与 Go 语言重构的核心引擎，支持千万级并发请求，页面加载速度提升 300%。</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-xl transition-shadow duration-300 group reveal-up">
+                    <div class="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center text-orange-600 mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                        <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">数据智能决策</h3>
+                    <p class="text-slate-500 leading-relaxed">内置 BI 商业智能看板，实时分析业务数据，用数据驱动每一次关键决策。</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-xl transition-shadow duration-300 group reveal-up delay-100">
+                    <div class="w-12 h-12 bg-teal-50 rounded-lg flex items-center justify-center text-teal-600 mb-6 group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                        <i data-lucide="smartphone" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">全渠道覆盖</h3>
+                    <p class="text-slate-500 leading-relaxed">一次开发，多端运行。完美适配 Web、iOS、Android、微信小程序及鸿蒙系统。</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-xl transition-shadow duration-300 group reveal-up delay-200">
+                    <div class="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                        <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">管家式服务</h3>
+                    <p class="text-slate-500 leading-relaxed">专属项目经理 1v1 对接，7x24小时运维响应，定期的系统健康检查报告。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 解决方案 (Tabbed Interface) -->
+    <section id="solutions" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-16">
+                <!-- Left: Content -->
+                <div class="lg:w-1/2 reveal-up">
+                    <h2 class="text-4xl font-bold text-slate-900 mb-6">全场景行业解决方案</h2>
+                    <p class="text-slate-500 mb-10 text-lg">针对不同行业的业务痛点，我们提炼出标准化的解决方案基座，并支持灵活的个性化定制。</p>
+                    
+                    <div class="space-y-6">
+                        <!-- Item 1 -->
+                        <div class="group cursor-pointer">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center text-brand-600 mt-1">1</div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">新零售电商</h3>
+                                    <p class="text-slate-500 text-sm">打通线上线下库存，构建私域流量池，实现会员全生命周期管理。</p>
+                                </div>
+                            </div>
+                        </div>
+                         <!-- Item 2 -->
+                         <div class="group cursor-pointer">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 mt-1 group-hover:bg-brand-100 group-hover:text-brand-600 transition-colors">2</div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">智慧物流供应链</h3>
+                                    <p class="text-slate-500 text-sm">基于 GIS 的路径规划，仓储自动化管理，实现物流全程可视化追踪。</p>
+                                </div>
+                            </div>
+                        </div>
+                         <!-- Item 3 -->
+                         <div class="group cursor-pointer">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 mt-1 group-hover:bg-brand-100 group-hover:text-brand-600 transition-colors">3</div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">企业数字化协同</h3>
+                                    <p class="text-slate-500 text-sm">打破信息孤岛，集成 ERP、CRM、OA，打造高效敏捷的数字化组织。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10">
+                        <a href="#" class="text-brand-600 font-bold flex items-center gap-2 hover:gap-3 transition-all">查看所有行业案例 <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+
+                <!-- Right: Image/Graphic -->
+                <div class="lg:w-1/2 relative reveal-up delay-100">
+                    <div class="absolute inset-0 bg-brand-600 rounded-3xl transform rotate-3 opacity-10"></div>
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" class="relative rounded-3xl shadow-2xl object-cover h-full min-h-[400px]" alt="Solutions">
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute bottom-8 left-8 bg-white/90 backdrop-blur p-4 rounded-xl shadow-lg max-w-xs">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                            <span class="text-xs font-bold text-slate-500">ROI 增长</span>
+                        </div>
+                        <div class="text-2xl font-bold text-slate-900">300% <span class="text-xs font-normal text-slate-400">/ 年</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. 数据统计 (Stats) -->
+    <section class="py-20 bg-brand-900 text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
+                <div class="reveal-up">
+                    <div class="text-4xl lg:text-5xl font-bold mb-2">8<span class="text-brand-400 text-3xl">+</span></div>
+                    <div class="text-brand-200 text-sm">年行业经验</div>
+                </div>
+                <div class="reveal-up delay-100">
+                    <div class="text-4xl lg:text-5xl font-bold mb-2">200<span class="text-brand-400 text-3xl">+</span></div>
+                    <div class="text-brand-200 text-sm">交付大型项目</div>
+                </div>
+                <div class="reveal-up delay-200">
+                    <div class="text-4xl lg:text-5xl font-bold mb-2">50<span class="text-brand-400 text-3xl">人</span></div>
+                    <div class="text-brand-200 text-sm">精英研发团队</div>
+                </div>
+                <div class="reveal-up delay-300">
+                    <div class="text-4xl lg:text-5xl font-bold mb-2">100<span class="text-brand-400 text-3xl">%</span></div>
+                    <div class="text-brand-200 text-sm">源码交付率</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. 技术栈 (Infinite Scroll) -->
+    <section class="py-16 bg-white overflow-hidden">
+        <div class="container mx-auto px-6 mb-8 text-center">
+            <span class="px-3 py-1 bg-slate-100 rounded-full text-xs font-bold text-slate-500 uppercase tracking-wider">技术内核</span>
+        </div>
+        <div class="relative flex overflow-x-hidden group">
+            <div class="py-4 animate-marquee whitespace-nowrap flex gap-16 items-center text-slate-400 font-bold text-xl px-16">
+                <!-- Tech Icons (Text for now) -->
+                <span>React.js</span> <span>Vue 3</span> <span>TypeScript</span> <span>Node.js</span> 
+                <span>Python</span> <span>Golang</span> <span>Docker</span> <span>Kubernetes</span>
+                <span>AWS</span> <span>Flutter</span> <span>TensorFlow</span> <span>PostgreSQL</span>
+                <!-- Duplicate for loop -->
+                 <span>React.js</span> <span>Vue 3</span> <span>TypeScript</span> <span>Node.js</span> 
+                <span>Python</span> <span>Golang</span> <span>Docker</span> <span>Kubernetes</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. 交付流程 (Timeline) -->
+    <section class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 reveal-up">
+                <h2 class="text-3xl font-bold text-slate-900">标准化交付流程</h2>
+                <p class="text-slate-500 mt-4">透明、高效、可控的项目管理机制</p>
+            </div>
+
+            <div class="relative">
+                <!-- Line -->
+                <div class="hidden lg:block absolute top-1/2 left-0 w-full h-1 bg-slate-200 -translate-y-1/2"></div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                    <!-- Step 1 -->
+                    <div class="relative bg-white p-6 rounded-xl shadow-sm z-10 text-center reveal-up">
+                        <div class="w-12 h-12 mx-auto bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 border-4 border-slate-50">1</div>
+                        <h4 class="font-bold text-lg mb-2">需求分析</h4>
+                        <p class="text-sm text-slate-500">深度调研，输出详细的 PRD 文档与原型图。</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="relative bg-white p-6 rounded-xl shadow-sm z-10 text-center reveal-up delay-100">
+                        <div class="w-12 h-12 mx-auto bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 border-4 border-slate-50">2</div>
+                        <h4 class="font-bold text-lg mb-2">UI/UX 设计</h4>
+                        <p class="text-sm text-slate-500">国际化视觉设计，打造极致的用户交互体验。</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="relative bg-white p-6 rounded-xl shadow-sm z-10 text-center reveal-up delay-200">
+                        <div class="w-12 h-12 mx-auto bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 border-4 border-slate-50">3</div>
+                        <h4 class="font-bold text-lg mb-2">敏捷开发</h4>
+                        <p class="text-sm text-slate-500">双周迭代，定期代码审查，确保代码质量。</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="relative bg-white p-6 rounded-xl shadow-sm z-10 text-center reveal-up delay-300">
+                        <div class="w-12 h-12 mx-auto bg-brand-600 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 border-4 border-slate-50">4</div>
+                        <h4 class="font-bold text-lg mb-2">测试上线</h4>
+                        <p class="text-sm text-slate-500">自动化测试，压力测试，平滑部署到生产环境。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. 团队介绍 (Team) -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <h2 class="text-3xl font-bold text-slate-900">核心管理团队</h2>
+                <a href="#" class="text-brand-600 font-bold text-sm">加入我们</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Member 1 -->
+                <div class="group relative overflow-hidden rounded-2xl reveal-up">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110" alt="CEO">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-80"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="text-xl font-bold">Alex Chen</h3>
+                        <p class="text-slate-300 text-sm mb-4">创始人 & CEO, 前阿里技术专家</p>
+                    </div>
+                </div>
+                <!-- Member 2 -->
+                <div class="group relative overflow-hidden rounded-2xl reveal-up delay-100">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop" class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110" alt="CTO">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-80"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="text-xl font-bold">Sarah Zhang</h3>
+                        <p class="text-slate-300 text-sm mb-4">CTO, 资深架构师</p>
+                    </div>
+                </div>
+                <!-- Member 3 -->
+                <div class="group relative overflow-hidden rounded-2xl reveal-up delay-200">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974&auto=format&fit=crop" class="w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-110" alt="Product">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-80"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h3 class="text-xl font-bold">David Li</h3>
+                        <p class="text-slate-300 text-sm mb-4">产品总监</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. 价格方案 (Pricing) - NEW MODULE -->
+    <section id="pricing" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+             <div class="text-center mb-16 reveal-up">
+                <h2 class="text-3xl font-bold text-slate-900">灵活的合作模式</h2>
+                <p class="text-slate-500 mt-4">按需选择，透明报价</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Plan 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl transition-all reveal-up">
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">基础版</h3>
+                    <p class="text-slate-400 text-sm mb-6">适合初创公司 MVP 验证</p>
+                    <div class="text-3xl font-bold text-slate-900 mb-6">¥ 50,000 <span class="text-sm font-normal text-slate-400">起</span></div>
+                    <ul class="space-y-4 text-sm text-slate-600 mb-8">
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 移动端小程序</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 基础后台管理</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 3个月免费维护</li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-3 text-center border border-slate-200 rounded-lg font-bold hover:bg-slate-50 transition-colors">选择此方案</a>
+                </div>
+
+                <!-- Plan 2 (Highlighted) -->
+                <div class="bg-slate-900 p-8 rounded-2xl shadow-2xl scale-105 relative reveal-up delay-100">
+                    <div class="absolute top-0 right-0 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">POPULAR</div>
+                    <h3 class="font-bold text-lg text-white mb-2">专业版</h3>
+                    <p class="text-slate-400 text-sm mb-6">适合成长型企业数字化转型</p>
+                    <div class="text-3xl font-bold text-white mb-6">¥ 150,000 <span class="text-sm font-normal text-slate-400">起</span></div>
+                    <ul class="space-y-4 text-sm text-slate-300 mb-8">
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> 全平台覆盖 (App+Web)</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> 定制化 UI 设计</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> 1年免费维护</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> 源代码交付</li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-3 text-center bg-brand-600 text-white rounded-lg font-bold hover:bg-brand-500 transition-colors">选择此方案</a>
+                </div>
+
+                <!-- Plan 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl transition-all reveal-up delay-200">
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">企业版</h3>
+                    <p class="text-slate-400 text-sm mb-6">适合大型集团复杂业务</p>
+                    <div class="text-3xl font-bold text-slate-900 mb-6">面议</div>
+                    <ul class="space-y-4 text-sm text-slate-600 mb-8">
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 微服务架构</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 私有化部署</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 专属技术团队</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> 7x24小时 SLA</li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-3 text-center border border-slate-200 rounded-lg font-bold hover:bg-slate-50 transition-colors">联系销售</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. 客户评价 (Testimonials) -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+             <h2 class="text-3xl font-bold text-slate-900 text-center mb-16">客户成功故事</h2>
+             <div class="grid md:grid-cols-2 gap-8">
+                 <div class="bg-slate-50 p-8 rounded-2xl relative reveal-up">
+                     <i data-lucide="quote" class="w-10 h-10 text-brand-200 absolute top-6 right-6"></i>
+                     <p class="text-slate-600 italic mb-6 leading-relaxed">"新沂亚森网络科技有限公司 不仅仅是开发商，更是我们的战略合作伙伴。他们对业务逻辑的理解非常深刻，帮助我们避免了很多产品设计上的坑。"</p>
+                     <div class="flex items-center gap-4">
+                         <div class="w-12 h-12 rounded-full bg-slate-300"></div>
+                         <div>
+                             <div class="font-bold text-slate-900">王志强</div>
+                             <div class="text-xs text-slate-500">某上市物流企业 CIO</div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="bg-slate-50 p-8 rounded-2xl relative reveal-up delay-100">
+                     <i data-lucide="quote" class="w-10 h-10 text-brand-200 absolute top-6 right-6"></i>
+                     <p class="text-slate-600 italic mb-6 leading-relaxed">"技术实力非常强悍，我们的系统在双11期间承受住了平时50倍的流量冲击，非常稳定。"</p>
+                     <div class="flex items-center gap-4">
+                         <div class="w-12 h-12 rounded-full bg-slate-300"></div>
+                         <div>
+                             <div class="font-bold text-slate-900">Lisa Chen</div>
+                             <div class="text-xs text-slate-500">知名跨境电商 运营总监</div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        </div>
+    </section>
+
+    <!-- 13. 最新动态 (News/Blog) - NEW MODULE -->
+    <section class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900">行业洞察</h2>
+                <a href="#" class="text-brand-600 font-bold text-sm">阅读更多</a>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group cursor-pointer reveal-up">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="AI">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-brand-600 font-bold mb-2">人工智能</div>
+                        <h3 class="font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">2025年企业级 AI 应用的五大趋势</h3>
+                        <p class="text-sm text-slate-500 line-clamp-2">随着大模型技术的落地，企业如何构建私有知识库...</p>
+                    </div>
+                </article>
+                <!-- Article 2 -->
+                <article class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group cursor-pointer reveal-up delay-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Data">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-brand-600 font-bold mb-2">大数据</div>
+                        <h3 class="font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">数据中台建设的避坑指南</h3>
+                        <p class="text-sm text-slate-500 line-clamp-2">数据治理不是一蹴而就的，本文分享了我们在实战中的经验。</p>
+                    </div>
+                </article>
+                <!-- Article 3 -->
+                <article class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group cursor-pointer reveal-up delay-200">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Management">
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-brand-600 font-bold mb-2">数字化转型</div>
+                        <h3 class="font-bold text-slate-900 mb-2 group-hover:text-brand-600 transition-colors">传统制造业如何拥抱数字化？</h3>
+                        <p class="text-sm text-slate-500 line-clamp-2">从工厂物联网到供应链协同，全方位解析转型路径。</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. 常见问题 (FAQ) -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6 max-w-3xl">
+             <h2 class="text-3xl font-bold text-slate-900 text-center mb-12">常见问题解答</h2>
+             <div class="space-y-4">
+                 <details class="group bg-slate-50 p-6 rounded-xl cursor-pointer">
+                     <summary class="flex justify-between items-center font-bold text-slate-900 list-none">
+                         <span>开发一个 App 需要多少钱？</span>
+                         <span class="transition-transform group-open:rotate-180"><i data-lucide="chevron-down"></i></span>
+                     </summary>
+                     <p class="text-slate-500 mt-4 text-sm">价格取决于功能的复杂程度。简单的展示型 App 约为 5万左右，复杂的电商或社交平台可能在 15万以上。我们建议您先与我们的产品经理沟通需求，获取准确报价。</p>
+                 </details>
+                 <details class="group bg-slate-50 p-6 rounded-xl cursor-pointer">
+                     <summary class="flex justify-between items-center font-bold text-slate-900 list-none">
+                         <span>项目开发周期一般是多久？</span>
+                         <span class="transition-transform group-open:rotate-180"><i data-lucide="chevron-down"></i></span>
+                     </summary>
+                     <p class="text-slate-500 mt-4 text-sm">一般项目周期在 4-8 周。包括需求分析、UI设计、开发、测试等环节。</p>
+                 </details>
+                 <details class="group bg-slate-50 p-6 rounded-xl cursor-pointer">
+                     <summary class="flex justify-between items-center font-bold text-slate-900 list-none">
+                         <span>你们提供源代码吗？</span>
+                         <span class="transition-transform group-open:rotate-180"><i data-lucide="chevron-down"></i></span>
+                     </summary>
+                     <p class="text-slate-500 mt-4 text-sm">是的，我们承诺 100% 源码交付，并不对后续的二次开发做任何限制。</p>
+                 </details>
+             </div>
+        </div>
+    </section>
+
+    <!-- 15. 联系我们 (Contact) -->
+    <section id="contact" class="py-24 bg-white relative">
+        <div class="container mx-auto px-6">
+            <div class="bg-brand-900 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row">
+                <!-- Text Area -->
+                <div class="lg:w-1/2 p-12 lg:p-20 text-white relative">
+                     <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                     <div class="relative z-10">
+                        <h2 class="text-4xl font-bold mb-6">准备好开始了吗？</h2>
+                        <p class="text-brand-100 mb-12 text-lg">填写右侧表单，我们将在 2 小时内为您提供免费的项目评估与报价方案。</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                                    <i data-lucide="phone" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-brand-200 uppercase">咨询热线</div>
+                                    <div class="text-xl font-bold">19394153056</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                                    <i data-lucide="mail" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-brand-200 uppercase">发送邮件</div>
+                                    <div class="text-xl font-bold">contact@xyyasen.com</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-brand-200 uppercase">公司地址</div>
+                                    <div class="text-lg font-bold">新沂市高流镇返乡创业园1号楼110室</div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+
+                <!-- Form Area -->
+                <div class="lg:w-1/2 bg-white p-12 lg:p-20">
+                    <form onsubmit="event.preventDefault(); alert('提交成功！');" class="space-y-6">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-sm font-bold text-slate-700">姓名</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="您的称呼">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-bold text-slate-700">手机号</label>
+                                <input type="tel" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="联系电话">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700">公司名称</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="所在企业">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700">需求描述</label>
+                            <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="请简单描述您的项目需求..."></textarea>
+                        </div>
+                        <button class="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-lg shadow-lg shadow-brand-500/30 transition-all flex items-center justify-center gap-2">
+                            提交需求 <i data-lucide="send" class="w-4 h-4"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 pt-20 pb-10 border-t border-slate-200">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 mb-12">
+                <div class="col-span-2">
+                    <div class="flex items-center gap-2 mb-6 text-slate-900">
+                        <i data-lucide="zap" class="w-6 h-6 fill-current text-brand-600"></i>
+                        <span class="text-xl font-bold">新沂亚森网络科技有限公司</span>
+                    </div>
+                    <p class="text-slate-500 text-sm max-w-xs mb-6">
+                        致力于通过技术创新，为企业提供卓越的数字化转型服务。从咨询到落地，我们始终与您同行。
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-brand-600 hover:border-brand-600 transition-all"><i data-lucide="github" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-brand-600 hover:border-brand-600 transition-all"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-brand-600 hover:border-brand-600 transition-all"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-6">解决方案</h4>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">新零售电商</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">智慧物流</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">数据中台</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">AI 智能应用</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-6">公司</h4>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">关于我们</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">加入团队</a> <span class="text-xs bg-brand-100 text-brand-600 px-2 py-0.5 rounded-full">Hiring</span></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">合作伙伴</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-6">资源</h4>
+                    <ul class="space-y-3 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">技术博客</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">开发文档</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">隐私政策</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition-colors">服务条款</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+                <p>&copy; 2025 新沂亚森 XY YASEN. All rights reserved.</p>
+                <p>Designed for Enterprise Growth.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-brand-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all hover:bg-brand-700 z-40" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <script>
+        // Icons
+        lucide.createIcons();
+
+        // Mobile Menu
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('translate-x-full');
+            document.body.classList.toggle('overflow-hidden');
+        }
+
+        // Navbar Scroll Effect & Back to Top
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            const backToTop = document.getElementById('backToTop');
+            
+            if (window.scrollY > 50) {
+                nav.classList.add('-translate-y-2'); // Slight compress effect or change style
+                backToTop.classList.remove('opacity-0', 'invisible');
+            } else {
+                nav.classList.remove('-translate-y-2');
+                backToTop.classList.add('opacity-0', 'invisible');
+            }
+        });
+
+        // Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
